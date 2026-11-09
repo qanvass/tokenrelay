@@ -1,0 +1,5 @@
+cache-prompts: true
+map-tokens: 512
+stream: true
+model: deepseek/deepseek-v3
+weak-model: deepseek/deepseek-v3

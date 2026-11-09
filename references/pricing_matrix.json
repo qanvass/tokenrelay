@@ -1,0 +1,497 @@
+{
+  "version": "2.1.0",
+  "last_updated": "2026-11-09",
+  "providers": {
+    "deepseek": {
+      "name": "DeepSeek",
+      "website": "https://deepseek.com",
+      "off_peak_window_utc": {
+        "start": "00:30",
+        "end": "08:30",
+        "discount_pct": 50,
+        "description": "50% off all token rates during daily off-peak hours (00:30-08:30 UTC)"
+      },
+      "models": {
+        "deepseek-v3": {
+          "tier": "code_edit",
+          "quality_score": 93,
+          "input_standard": 0.27,
+          "input_cached": 0.07,
+          "output": 1.10,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 64
+        },
+        "deepseek-r1": {
+          "tier": "reasoning_architect",
+          "quality_score": 98,
+          "input_standard": 0.55,
+          "input_cached": 0.14,
+          "output": 2.19,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 64,
+          "thinking_token_warning": "Thinking tokens count as output ($2.19/1M). Use prompt constraints to limit reasoning depth."
+        }
+      },
+      "cost_levers": [
+        "Automatic KV cache on NVMe disk (up to 90% input discount)",
+        "Daily 50% off-peak pricing (00:30-08:30 UTC)",
+        "Cheapest frontier code generation rates in the industry"
+      ]
+    },
+    "openai": {
+      "name": "OpenAI",
+      "website": "https://platform.openai.com",
+      "off_peak_window_utc": null,
+      "models": {
+        "gpt-6-astra": {
+          "tier": "reasoning_architect",
+          "quality_score": 99,
+          "input_standard": 10.00,
+          "input_cached": 1.00,
+          "output": 50.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        },
+        "gpt-6.1-sol": {
+          "tier": "flagship_general",
+          "quality_score": 95,
+          "input_standard": 2.00,
+          "input_cached": 0.10,
+          "output": 10.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        },
+        "gpt-6.1-terra": {
+          "tier": "fast_workhorse",
+          "quality_score": 88,
+          "input_standard": 0.50,
+          "input_cached": 0.05,
+          "output": 2.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        },
+        "o3-mini": {
+          "tier": "reasoning_architect",
+          "quality_score": 96,
+          "input_standard": 1.10,
+          "input_cached": 0.55,
+          "output": 4.40,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        },
+        "gpt-4o-mini": {
+          "tier": "fast_workhorse",
+          "quality_score": 85,
+          "input_standard": 0.15,
+          "input_cached": 0.075,
+          "output": 0.60,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        }
+      },
+      "cost_levers": [
+        "Automatic Prefix Caching for prefixes >= 1024 tokens (50% to 90% off)",
+        "OpenAI Batch API (50% off all inputs and outputs within 24h)",
+        "OpenAI for Startups credits ($2,500 to $100,000+)"
+      ]
+    },
+    "anthropic": {
+      "name": "Anthropic",
+      "website": "https://anthropic.com",
+      "off_peak_window_utc": null,
+      "models": {
+        "claude-3-7-sonnet": {
+          "tier": "reasoning_architect",
+          "quality_score": 99,
+          "input_standard": 3.00,
+          "input_cached": 0.30,
+          "output": 15.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        },
+        "claude-3-5-sonnet": {
+          "tier": "flagship_general",
+          "quality_score": 96,
+          "input_standard": 3.00,
+          "input_cached": 0.30,
+          "output": 15.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        },
+        "claude-3-5-haiku": {
+          "tier": "fast_workhorse",
+          "quality_score": 88,
+          "input_standard": 0.80,
+          "input_cached": 0.08,
+          "output": 4.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 2048
+        }
+      },
+      "cost_levers": [
+        "Prompt Caching via explicit ephemeral breakpoints (90% read discount)",
+        "Anthropic Messages Batch API (50% off)",
+        "Architect/Editor split (Haiku edits + Sonnet planning)"
+      ]
+    },
+    "google": {
+      "name": "Google DeepMind",
+      "website": "https://ai.google.dev",
+      "off_peak_window_utc": null,
+      "models": {
+        "gemini-2.5-pro": {
+          "tier": "reasoning_architect",
+          "quality_score": 98,
+          "input_standard": 1.25,
+          "input_cached": 0.31,
+          "output": 5.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 32768
+        },
+        "gemini-2.0-flash": {
+          "tier": "fast_workhorse",
+          "quality_score": 89,
+          "input_standard": 0.10,
+          "input_cached": 0.025,
+          "output": 0.40,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 32768
+        },
+        "gemini-2.0-flash-lite": {
+          "tier": "fast_workhorse",
+          "quality_score": 83,
+          "input_standard": 0.075,
+          "input_cached": 0.019,
+          "output": 0.30,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 32768
+        }
+      },
+      "cost_levers": [
+        "Context Caching on large contexts (>32k tokens) with 75-95% discount",
+        "Google AI Studio Free Tier (15 RPM / 1M TPM / 1500 RPD free forever for prototyping)",
+        "Gemini Batch Prediction API (50% off)"
+      ]
+    },
+    "mistral": {
+      "name": "Mistral AI",
+      "website": "https://mistral.ai",
+      "off_peak_window_utc": null,
+      "models": {
+        "codestral-25.08": {
+          "tier": "code_edit",
+          "quality_score": 92,
+          "input_standard": 0.30,
+          "input_cached": 0.15,
+          "output": 0.90,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 512
+        },
+        "mistral-large-3": {
+          "tier": "flagship_general",
+          "quality_score": 94,
+          "input_standard": 0.50,
+          "input_cached": 0.25,
+          "output": 1.50,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 512
+        }
+      },
+      "cost_levers": [
+        "Dedicated Fill-In-the-Middle (FIM) code endpoint saving 80% tokens on autocomplete",
+        "Mistral Batch API (50% off)"
+      ]
+    },
+    "meta_open_weights": {
+      "name": "Meta Llama & Open Weights (Local / Cloud LPU)",
+      "website": "https://ollama.ai",
+      "off_peak_window_utc": null,
+      "models": {
+        "qwen-2.5-coder-32b-local": {
+          "tier": "code_edit",
+          "quality_score": 93,
+          "input_standard": 0.00,
+          "input_cached": 0.00,
+          "output": 0.00,
+          "batch_discount_pct": 0,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 0
+        },
+        "llama-3.3-70b-local": {
+          "tier": "flagship_general",
+          "quality_score": 92,
+          "input_standard": 0.00,
+          "input_cached": 0.00,
+          "output": 0.00,
+          "batch_discount_pct": 0,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 0
+        },
+        "qwen-2.5-coder-7b-local": {
+          "tier": "fast_workhorse",
+          "quality_score": 86,
+          "input_standard": 0.00,
+          "input_cached": 0.00,
+          "output": 0.00,
+          "batch_discount_pct": 0,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 0
+        },
+        "llama-3.3-70b-groq": {
+          "tier": "flagship_general",
+          "quality_score": 92,
+          "input_standard": 0.59,
+          "input_cached": 0.59,
+          "output": 0.79,
+          "batch_discount_pct": 0,
+          "supports_prompt_caching": false,
+          "min_cache_tokens": 0
+        }
+      },
+      "cost_levers": [
+        "$0.00 / token on local hardware via Ollama / vLLM / llama.cpp",
+        "Sub-cent per-million speeds on Groq / Cerebras / SambaNova",
+        "Zero data transmission egress"
+      ]
+    },
+    "xai": {
+      "name": "xAI (Grok)",
+      "website": "https://x.ai",
+      "off_peak_window_utc": null,
+      "models": {
+        "grok-2": {
+          "tier": "flagship_general",
+          "quality_score": 92,
+          "input_standard": 2.00,
+          "input_cached": 0.20,
+          "output": 10.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        }
+      },
+      "cost_levers": [
+        "Prompt caching on stable prefixes",
+        "Monthly developer API promotional allowances"
+      ]
+    },
+    "cohere": {
+      "name": "Cohere",
+      "website": "https://cohere.com",
+      "off_peak_window_utc": null,
+      "models": {
+        "command-r-plus": {
+          "tier": "reasoning_architect",
+          "quality_score": 91,
+          "input_standard": 2.50,
+          "input_cached": 0.50,
+          "output": 10.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        },
+        "command-r": {
+          "tier": "fast_workhorse",
+          "quality_score": 86,
+          "input_standard": 0.15,
+          "input_cached": 0.05,
+          "output": 0.60,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        }
+      },
+      "cost_levers": [
+        "Cohere Rerank 3 compresses retrieved RAG context by 70%, slashing downstream LLM token spend"
+      ]
+    },
+    "amazon_bedrock": {
+      "name": "Amazon Bedrock (AWS)",
+      "website": "https://aws.amazon.com/bedrock",
+      "off_peak_window_utc": null,
+      "models": {
+        "claude-3-5-sonnet-bedrock": {
+          "tier": "reasoning_architect",
+          "quality_score": 97,
+          "input_standard": 3.00,
+          "input_cached": 0.30,
+          "output": 15.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        },
+        "amazon-nova-pro": {
+          "tier": "flagship_general",
+          "quality_score": 90,
+          "input_standard": 0.80,
+          "input_cached": 0.20,
+          "output": 3.20,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        },
+        "amazon-nova-micro": {
+          "tier": "fast_workhorse",
+          "quality_score": 80,
+          "input_standard": 0.035,
+          "input_cached": 0.009,
+          "output": 0.14,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        }
+      },
+      "cost_levers": [
+        "Bedrock Prompt Caching across Claude & Nova models (up to 90% read discount)",
+        "Intelligent Cross-Region Inference Profiles routing to lowest-cost AWS regions",
+        "AWS Activate credits ($10,000 to $100,000)"
+      ]
+    },
+    "azure_openai": {
+      "name": "Microsoft Azure OpenAI",
+      "website": "https://azure.microsoft.com",
+      "off_peak_window_utc": null,
+      "models": {
+        "gpt-4o-azure": {
+          "tier": "flagship_general",
+          "quality_score": 95,
+          "input_standard": 2.50,
+          "input_cached": 1.25,
+          "output": 10.00,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        },
+        "gpt-4o-mini-azure": {
+          "tier": "fast_workhorse",
+          "quality_score": 85,
+          "input_standard": 0.15,
+          "input_cached": 0.075,
+          "output": 0.60,
+          "batch_discount_pct": 50,
+          "supports_prompt_caching": true,
+          "min_cache_tokens": 1024
+        }
+      },
+      "cost_levers": [
+        "Azure Global Batch (50% discount on off-peak batches)",
+        "Azure OpenAI Prompt Caching",
+        "Microsoft for Startups Founders Hub credits (up to $150,000)"
+      ]
+    }
+  },
+  "ides": {
+    "cursor": {
+      "name": "Cursor",
+      "config_file": ".cursor/rules/*.mdc",
+      "legacy_config_file": ".cursorrules",
+      "mcp_config": ".cursor/mcp.json",
+      "default_paths": ["~/.cursor", "%APPDATA%\\Cursor"],
+      "token_waste_vectors": [
+        "Bloated .cursorrules (>500 tokens prepended to every message)",
+        "Unindexed node_modules and build directories without .cursorignore",
+        "Using flagship models for Cursor Tab autocomplete rather than Cursor native/local models"
+      ]
+    },
+    "windsurf": {
+      "name": "Windsurf (Codeium)",
+      "config_file": ".windsurfrules",
+      "mcp_config": "~/.codeium/windsurf/mcp_config.json",
+      "default_paths": ["~/.codeium/windsurf", "%APPDATA%\\Codeium\\Windsurf"],
+      "token_waste_vectors": [
+        "Unbounded Cascade indexing scanning entire hard drive",
+        "Dynamic timestamps and session IDs in .windsurfrules busting cache"
+      ]
+    },
+    "copilot": {
+      "name": "GitHub Copilot",
+      "config_file": ".github/copilot-instructions.md",
+      "ignore_file": ".copilotignore",
+      "default_paths": ["~/.vscode/extensions/*github.copilot*", "%USERPROFILE%\\.vscode\\extensions\\*github.copilot*"],
+      "token_waste_vectors": [
+        "Missing .copilotignore causing minified bundles and binaries to be sent to Copilot backend",
+        "Verbose project descriptions in instructions"
+      ]
+    },
+    "cline": {
+      "name": "Cline / Roo Code",
+      "config_file": ".clinerules",
+      "mcp_config": "~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json",
+      "default_paths": ["~/.cline", "%APPDATA%\\Code\\User\\globalStorage\\saoudrizwan.claude-dev"],
+      "token_waste_vectors": [
+        "Missing prompt cache breakpoints on Claude turns",
+        "Failing to prune long conversation histories before starting fresh tasks"
+      ]
+    },
+    "claude_code": {
+      "name": "Claude Code (CLI)",
+      "config_file": "CLAUDE.md",
+      "mcp_config": ".claude/mcp.json",
+      "default_paths": ["~/.claude", "%USERPROFILE%\\.claude"],
+      "token_waste_vectors": [
+        "Editing CLAUDE.md mid-session (instantly invalidates Anthropic 5m/1h cache)",
+        "Forgetting /compact between major sub-goals"
+      ]
+    },
+    "continue_dev": {
+      "name": "Continue.dev",
+      "config_file": "~/.continue/config.json",
+      "default_paths": ["~/.continue", "%USERPROFILE%\\.continue"],
+      "token_waste_vectors": [
+        "Using cloud APIs for Tab autocomplete instead of local Ollama (Qwen 2.5 Coder 1.5B/7B)",
+        "Unbounded context inclusion"
+      ]
+    },
+    "aider": {
+      "name": "Aider",
+      "config_file": ".aider.conf.yml",
+      "default_paths": ["~/.aider", ".aider.conf.yml"],
+      "token_waste_vectors": [
+        "Default repo-map token size too large (recommend --map-tokens 512)",
+        "Not passing --cache-prompts flag"
+      ]
+    },
+    "jetbrains": {
+      "name": "JetBrains AI Assistant",
+      "config_file": ".jetbrains/rules.xml",
+      "default_paths": ["~/.IntelliJIdea*", "~/.PyCharm*", "%APPDATA%\\JetBrains"],
+      "token_waste_vectors": [
+        "Full project indexing without exclusion filters",
+        "Redundant cloud completions for boilerplate patterns"
+      ]
+    },
+    "void": {
+      "name": "Void (Open Source VS Code Fork)",
+      "config_file": ".void/config.json",
+      "default_paths": ["~/.void", "%APPDATA%\\Void"],
+      "token_waste_vectors": [
+        "Uncapped fallback chains",
+        "Uncompressed file context passing"
+      ]
+    },
+    "antigravity": {
+      "name": "Google Antigravity",
+      "config_file": ".gemini/rules",
+      "default_paths": ["~/.gemini", "%USERPROFILE%\\.gemini"],
+      "token_waste_vectors": [
+        "Parent-child subagent transcript ballooning without compacting",
+        "Passing raw code files instead of diffs and AST outlines"
+      ]
+    }
+  }
+}

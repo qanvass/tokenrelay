@@ -1,0 +1,11 @@
+node_modules/
+dist/
+build/
+.git/
+*.min.js
+*.bundle.js
+*.pyc
+__pycache__/
+*.lock
+*.log
+coverage/

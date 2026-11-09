@@ -1,0 +1,44 @@
+# TokenRelay Environment & Secrets Exclusion
+.env
+*.env
+.env.*
+!.env.example
+
+# Local receipts and runtime state
+.tokenopt/
+*.vscdb
+*.sqlite
+*.sqlite3
+
+# Python Bytecode & Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor Local Configs
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+.idea/
+*.sublime-workspace
+*.swp
+
+# Temporary test and log artifacts
+*.log
+update_html.py
+inspect_overview.py
+apply_features.py
+add_keys_endpoint.py
+verify_all_endpoints.py

@@ -1,0 +1,31 @@
+{
+  "name": "tokenrelay",
+  "version": "2.2.0",
+  "description": "The intelligent orchestrator that routes IDE tasks to the best, cheapest models.",
+  "main": "agent.py",
+  "bin": {
+    "tokenrelay": "./bin/tokenrelay.cmd"
+  },
+  "scripts": {
+    "start": "python agent.py dashboard",
+    "mcp": "python agent.py mcp",
+    "test": "python -m unittest discover -s tests"
+  },
+  "keywords": [
+    "llm",
+    "cost-optimizer",
+    "token-savings",
+    "mcp",
+    "claude-desktop",
+    "cursor",
+    "deepseek",
+    "proxy",
+    "router"
+  ],
+  "author": "TokenRelay Open Source Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/tokenrelay.git"
+  }
+}
