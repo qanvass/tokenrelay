@@ -1,0 +1,5 @@
+# TokenRelay Prompt ROI Optimizer
+# Apply strict search/replace diff constraints and sanitize cache busters
+- Always output code modifications strictly using SEARCH/REPLACE blocks.
+- Do not regenerate full files.
+- Strip dynamic timestamps and session UUIDs from system instructions.

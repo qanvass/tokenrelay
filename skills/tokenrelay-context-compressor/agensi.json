@@ -1,0 +1,19 @@
+{
+  "id": "tokenrelay-context-compressor",
+  "name": "TokenRelay Context Compressor",
+  "version": "1.1.0",
+  "author": "TokenRelay <support@tokenrelay.org>",
+  "category": "context-optimization",
+  "price_usd": 24,
+  "marketplace": "Agensi.io",
+  "entrypoint": "scripts/compress.py",
+  "compatibility": [
+    "claude-code",
+    "cursor",
+    "copilot",
+    "cline",
+    "antigravity"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/qanvass/tokenrelay"
+}

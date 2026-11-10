@@ -1,0 +1,19 @@
+{
+  "id": "tokenrelay-parity-router",
+  "name": "TokenRelay Parity Router",
+  "version": "1.1.0",
+  "author": "TokenRelay <support@tokenrelay.org>",
+  "category": "model-orchestration",
+  "price_usd": 29,
+  "marketplace": "Agensi.io",
+  "entrypoint": "scripts/route.py",
+  "compatibility": [
+    "claude-code",
+    "cursor",
+    "copilot",
+    "cline",
+    "antigravity"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/qanvass/tokenrelay"
+}

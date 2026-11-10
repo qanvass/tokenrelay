@@ -1,0 +1,4 @@
+# TokenRelay Cryptographic Receipts Auditor
+# Logs verifiable ROI and token metrics
+- Track input, output, and cached token volume per session.
+- Generate SHA-256 verifiable receipts showing dollar savings vs Claude Opus rate cards.

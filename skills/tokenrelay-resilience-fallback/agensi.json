@@ -1,0 +1,19 @@
+{
+  "id": "tokenrelay-resilience-fallback",
+  "name": "TokenRelay Resilience Fallback Engine",
+  "version": "1.1.0",
+  "author": "TokenRelay <support@tokenrelay.org>",
+  "category": "reliability",
+  "price_usd": 19,
+  "marketplace": "Agensi.io",
+  "entrypoint": "scripts/fallback.py",
+  "compatibility": [
+    "claude-code",
+    "cursor",
+    "copilot",
+    "cline",
+    "antigravity"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/qanvass/tokenrelay"
+}

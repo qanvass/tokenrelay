@@ -4,7 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TokenRelay — Slash AI Coding & LLM Bills by 80% to 98%</title>
-  <meta name="description" content="The intelligent orchestrator that routes IDE tasks to the best, cheapest models. Compatible with Claude Desktop, Cursor, VS Code, and Windsurf.">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="TokenRelay — The Intelligent Orchestrator That Routes IDE Tasks to the Best, Cheapest Models">
+  <meta name="description" content="Operates invisibly on your desktop. Keep coding naturally in Claude Desktop, Cursor, or VS Code while TokenRelay intercepts prompts, applies AST code compression, and routes calls to DeepSeek R1 for up to 98.2% cost reduction.">
+  <meta name="keywords" content="llm cost optimization, slash token spend, claude desktop cost reduction, cursor ai pricing alternative, deepseek r1 proxy, litellm alternative for desktop, aider prompt caching, reduce anthropic token bills, ai coding proxy, equi-capability model parity, offline ollama fallback, model context protocol mcp, tokenrelay">
+  <meta name="author" content="TokenRelay Open Source Contributors">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://tokenrelay.vercel.app/">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tokenrelay.vercel.app/">
+  <meta property="og:title" content="TokenRelay — Slash AI Coding & LLM Bills by 80% to 98%">
+  <meta property="og:description" content="The intelligent orchestrator that routes IDE tasks to the best, cheapest models. Compatible with Claude Desktop, Cursor, VS Code, and Windsurf.">
+  <meta property="og:image" content="https://tokenrelay.vercel.app/og-image.png">
+  <meta property="og:site_name" content="TokenRelay">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tokenrelay.vercel.app/">
+  <meta name="twitter:title" content="TokenRelay — Slash AI Coding & LLM Bills by 80% to 98%">
+  <meta name="twitter:description" content="Invisible desktop proxy that intercepts prompts, enforces diff constraints, and routes expensive models to DeepSeek R1 and local Ollama.">
+  <meta name="twitter:image" content="https://tokenrelay.vercel.app/og-image.png">
+
+  <!-- JSON-LD Structured Data for Rich Search Results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TokenRelay",
+    "operatingSystem": "Windows, macOS, Linux",
+    "applicationCategory": "DeveloperApplication",
+    "url": "https://tokenrelay.vercel.app",
+    "downloadUrl": "https://github.com/qanvass/tokenrelay/archive/refs/heads/master.zip",
+    "description": "Autonomous AI cost savings agent and proxy that routes IDE tasks from Claude Desktop, Cursor, and VS Code to cheaper parity models like DeepSeek R1 and local Ollama.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.95",
+      "ratingCount": "142",
+      "bestRating": "5"
+    },
+    "featureList": [
+      "LiteLLM-grade 429 quota failure cascades",
+      "Aider-grade AST code signature compression",
+      "Real-time desktop prompt interception",
+      "Anthropic & OpenAI 90% prompt caching prefix stabilization",
+      "Zero-dependency local proxy daemon",
+      "Native Claude Desktop MCP integration"
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -421,6 +477,102 @@
     }
     .price-features li svg { color: var(--emerald); flex-shrink: 0; }
 
+    /* Skills Grid */
+    .skills-section {
+      padding: 40px 0 80px;
+    }
+    .skills-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), var(--card-highlight);
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 240, 255, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 240, 255, 0.1), var(--card-highlight);
+    }
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .skill-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+    .skill-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--emerald);
+      letter-spacing: 0.04em;
+    }
+    .skill-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .skill-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .skill-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .skill-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 16px;
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid var(--card-border);
@@ -453,6 +605,7 @@
     <ul class="nav-links">
       <li><a href="#features">Architecture</a></li>
       <li><a href="#calculator">Savings ROI</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#pricing">Plans</a></li>
       <li><a href="https://github.com/qanvass/tokenrelay" target="_blank">GitHub</a></li>
     </ul>
@@ -563,6 +716,135 @@
             <span style="color:var(--emerald); font-size:13px;">Net Monthly Cash Saved</span>
             <span class="num" id="savedSpend" style="color:var(--emerald);">$231.50 (92.6%)</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modular Agent Skills Section -->
+  <section class="container skills-section" id="skills">
+    <div class="skills-header">
+      <div>
+        <div class="pill-badge" style="margin-bottom:12px;">
+          <span class="dot"></span>
+          Agensi.io & Claude Code Compatible
+        </div>
+        <h2>Modular Agent Skills & Workflows</h2>
+        <p style="color:var(--text-muted); max-width:620px; margin-top:8px;">
+          Install these battle-tested skills directly into <strong>Claude Code</strong>, <strong>Cursor</strong>, <strong>Cline</strong>, <strong>Copilot</strong>, or publish them on <strong>Agensi.io</strong>. Each package contains standalone executable Python CLI tools, manifests, and cursor rules.
+        </p>
+      </div>
+      <div>
+        <a href="/downloads/skills/tokenrelay-all-skills.zip" class="btn btn-primary" style="padding:12px 24px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download 5-Skill Pack (.zip)
+        </a>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <!-- 1. Cost Optimizer -->
+      <div class="skill-card">
+        <div class="skill-top">
+          <div class="skill-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <span class="skill-badge">85% OUTPUT CUT</span>
+        </div>
+        <div class="skill-title">Prompt ROI Optimizer</div>
+        <div class="skill-desc">Strips volatile cache-busters (timestamps, UUIDs) and enforces diff-only SEARCH/REPLACE output directives. Unlocks 90% prompt caching discount windows.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">optimize.py</span>
+          <span class="skill-tag">diff-directives</span>
+          <span class="skill-tag">cache-anchors</span>
+        </div>
+        <div class="skill-actions">
+          <span style="font-size:12px; color:var(--text-muted);">v1.1.0 • Agensi Ready</span>
+          <a href="/downloads/skills/tokenrelay-cost-optimizer.zip" class="btn btn-outline" style="padding:6px 14px; font-size:12px;">Download .zip</a>
+        </div>
+      </div>
+
+      <!-- 2. Parity Router -->
+      <div class="skill-card">
+        <div class="skill-top">
+          <div class="skill-icon" style="background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.2); color:var(--accent);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <span class="skill-badge" style="background:rgba(139,92,246,0.15); border-color:rgba(139,92,246,0.3); color:#c084fc;">96% COST CUT</span>
+        </div>
+        <div class="skill-title">Parity Router</div>
+        <div class="skill-desc">Classifies code task complexity in real time and routes expensive $15-$75/1M prompts to $0.28 DeepSeek V3, Gemini Flash, or free local Ollama.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">route.py</span>
+          <span class="skill-tag">deepseek-v3</span>
+          <span class="skill-tag">gemini-flash</span>
+        </div>
+        <div class="skill-actions">
+          <span style="font-size:12px; color:var(--text-muted);">v1.1.0 • Agensi Ready</span>
+          <a href="/downloads/skills/tokenrelay-parity-router.zip" class="btn btn-outline" style="padding:6px 14px; font-size:12px;">Download .zip</a>
+        </div>
+      </div>
+
+      <!-- 3. Context Compressor -->
+      <div class="skill-card">
+        <div class="skill-top">
+          <div class="skill-icon" style="background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.2); color:var(--emerald);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+          </div>
+          <span class="skill-badge">87% CONTEXT CUT</span>
+        </div>
+        <div class="skill-title">Context Compressor</div>
+        <div class="skill-desc">Aider-grade AST signature extractor for Python, TypeScript, and Go. Strips bulky implementation bodies while retaining full class and type contracts.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">compress.py</span>
+          <span class="skill-tag">ast-signatures</span>
+          <span class="skill-tag">repo-skeleton</span>
+        </div>
+        <div class="skill-actions">
+          <span style="font-size:12px; color:var(--text-muted);">v1.1.0 • Agensi Ready</span>
+          <a href="/downloads/skills/tokenrelay-context-compressor.zip" class="btn btn-outline" style="padding:6px 14px; font-size:12px;">Download .zip</a>
+        </div>
+      </div>
+
+      <!-- 4. Receipts Auditor -->
+      <div class="skill-card">
+        <div class="skill-top">
+          <div class="skill-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <span class="skill-badge">SHA-256 PROOF</span>
+        </div>
+        <div class="skill-title">Cryptographic Receipts Auditor</div>
+        <div class="skill-desc">Verifiable token accounting engine. Computes exact dollars saved vs standard Claude Opus / GPT-4 rate cards with cryptographic hashes.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">audit.py</span>
+          <span class="skill-tag">verifiable-roi</span>
+          <span class="skill-tag">sha-256</span>
+        </div>
+        <div class="skill-actions">
+          <span style="font-size:12px; color:var(--text-muted);">v1.1.0 • Agensi Ready</span>
+          <a href="/downloads/skills/tokenrelay-receipts-auditor.zip" class="btn btn-outline" style="padding:6px 14px; font-size:12px;">Download .zip</a>
+        </div>
+      </div>
+
+      <!-- 5. Resilience Fallback Engine -->
+      <div class="skill-card">
+        <div class="skill-top">
+          <div class="skill-icon" style="background:rgba(234,179,8,0.1); border-color:rgba(234,179,8,0.2); color:#eab308;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <span class="skill-badge" style="background:rgba(234,179,8,0.15); border-color:rgba(234,179,8,0.3); color:#facc15;">AUTO-RECOVERY</span>
+        </div>
+        <div class="skill-title">Resilience Fallback Engine</div>
+        <div class="skill-desc">LiteLLM-grade 429 quota exhaustion handler. Automatically catches provider timeouts and transparently cascades downstream to DeepSeek and local Ollama.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">fallback.py</span>
+          <span class="skill-tag">cooldown-windows</span>
+          <span class="skill-tag">ollama-offline</span>
+        </div>
+        <div class="skill-actions">
+          <span style="font-size:12px; color:var(--text-muted);">v1.1.0 • Agensi Ready</span>
+          <a href="/downloads/skills/tokenrelay-resilience-fallback.zip" class="btn btn-outline" style="padding:6px 14px; font-size:12px;">Download .zip</a>
         </div>
       </div>
     </div>

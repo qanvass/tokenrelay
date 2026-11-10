@@ -1,0 +1,4 @@
+# TokenRelay Parity Router
+# Routes code tasks to cost-effective parity models
+- Routine unit tests, documentation, and refactors should route to DeepSeek-V3 or Gemini Flash.
+- Reserve flagship models strictly for complex architectural proofs or formal verification.

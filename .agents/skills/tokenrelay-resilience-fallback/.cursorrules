@@ -1,0 +1,4 @@
+# TokenRelay Resilience Fallback Engine
+# Transparent 429 retry and provider cascade
+- On HTTP 429 or provider rate limit, automatically cascade to DeepSeek -> Gemini -> Local Ollama.
+- Maintain continuous agent execution without user interruption.

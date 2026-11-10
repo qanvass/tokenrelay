@@ -1,0 +1,4 @@
+# TokenRelay Context Compressor
+# Reduces context token bloat with AST signatures
+- When importing repository context, extract structural AST signatures (classes, functions, types).
+- Omit large implementation bodies unless explicitly debugging that specific routine.

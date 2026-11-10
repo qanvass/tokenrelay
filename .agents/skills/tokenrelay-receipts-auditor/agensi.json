@@ -1,0 +1,19 @@
+{
+  "id": "tokenrelay-receipts-auditor",
+  "name": "TokenRelay Cryptographic Receipts Auditor",
+  "version": "1.1.0",
+  "author": "TokenRelay <support@tokenrelay.org>",
+  "category": "analytics-billing",
+  "price_usd": 15,
+  "marketplace": "Agensi.io",
+  "entrypoint": "scripts/audit.py",
+  "compatibility": [
+    "claude-code",
+    "cursor",
+    "copilot",
+    "cline",
+    "antigravity"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/qanvass/tokenrelay"
+}
