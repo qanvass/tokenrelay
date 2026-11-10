@@ -276,6 +276,28 @@ class DashboardHTTPHandler(BaseHTTPRequestHandler):
             self.wfile.write(body)
             return
 
+        elif parsed.path == "/api/keys":
+            env_path = os.path.join(os.getcwd(), ".env")
+            keys = {
+                "DEEPSEEK_API_KEY": os.environ.get("DEEPSEEK_API_KEY", ""),
+                "GEMINI_API_KEY": os.environ.get("GEMINI_API_KEY", "") or os.environ.get("GOOGLE_API_KEY", ""),
+                "SQUARE_DONATION_URL": os.environ.get("SQUARE_DONATION_URL", "https://square.link/u/donate-tokenrelay")
+            }
+            if os.path.exists(env_path):
+                with open(env_path, "r", encoding="utf-8") as ef:
+                    for l in ef:
+                        if "=" in l and not l.strip().startswith("#"):
+                            parts = l.strip().split("=", 1)
+                            keys[parts[0].strip()] = parts[1].strip()
+            body = json.dumps(keys).encode("utf-8")
+            self.send_response(200)
+            self.send_cors_headers()
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+
         else:
             self.send_response(404)
             self.send_cors_headers()
@@ -324,6 +346,7 @@ class DashboardHTTPHandler(BaseHTTPRequestHandler):
                 with open(env_path, "w", encoding="utf-8") as ef:
                     for k, v in existing.items():
                         ef.write(f"{k}={v}\n")
+                _CACHE["audit"] = None
                 body = json.dumps({"status": "ok", "message": "API keys saved and activated"}).encode("utf-8")
                 self.send_response(200)
                 self.send_cors_headers()

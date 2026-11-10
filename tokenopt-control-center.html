@@ -108,6 +108,7 @@
     <label class="tiny" style="font-weight:600;display:block;margin-bottom:6px;">YOUR SQUARE PAYMENT LINK</label>
     <div style="display:flex;gap:10px;">
       <input type="text" id="squareUrlInput" value="https://square.link/u/donate-tokenrelay" class="search" style="flex:1;border-radius:8px;">
+      <button class="btn" id="saveSquareBtn" onclick="saveSquareLink()" style="cursor:pointer;">Save Link</button>
       <a id="testSquareBtn" href="https://square.link/u/donate-tokenrelay" target="_blank" class="btn primary" style="text-decoration:none;display:inline-flex;align-items:center;">Test Donation</a>
     </div>
     <span class="tiny" style="display:block;margin-top:6px;color:#94a3b8;">Supports Apple Pay, Google Pay, Cash App Pay, and all major credit/debit cards via Square.</span>
@@ -172,6 +173,88 @@ const toggleLabels=['Model fallback','Prompt optimization','Cache-aware routing'
 async function refresh(){if(!API.base)return;try{let status=await request('status');live=true;$('heartbeatLabel').textContent='● Backend connected';$('heroMode').textContent='LIVE';$('demoNotice').classList.add('hidden');$('agentStatus').textContent=status.agentStatus||status.status||'Connected';$('currentTask').textContent=status.currentTask||'Backend is connected';$('lastSync').textContent='Last refreshed '+new Date().toLocaleTimeString();$('sideStatus').textContent='Backend connected';$('agentBtn').textContent='Agent settings';$('hardwareBadge').textContent='Check backend';$('routerPill').textContent='Connected';
 // Fetch independently so a missing optional endpoint does not hide a successful heartbeat.
 let vals=await Promise.allSettled(['metrics','models','integrations','ledger'].map(k=>request(k)));for(let j=0;j<vals.length;j++){if(vals[j].status!=='fulfilled')continue;let v=vals[j].value;if(j===0&&v&&typeof v==='object'&&Number.isFinite(Number(v.tokens)))state.metrics={...state.metrics,...v};if(j===1&&Array.isArray(v))state.models=v;if(j===2&&v){if(Array.isArray(v.ides))state.ides=v.ides;if(Array.isArray(v.providers))state.providers=v.providers}if(j===3&&Array.isArray(v))state.ledger=v}render();toast('Backend reachable. Check each service status individually.')}catch(e){live=false;$('heartbeatLabel').textContent='● LIVE ENGINE';$('demoNotice').classList.remove('hidden');$('heroMode').textContent='DEMO';$('agentStatus').textContent='Preview • Backend unavailable';$('sideStatus').textContent='TokenRelay Live Workspace';toast('Connection failed: '+e.message)}}$('connectBtn').onclick=()=>{API.base=$('apiBase').value.trim().replace(/\/$/,'');localStorage.setItem('tokenrelay-api-base',API.base);refresh()};$('apiBase').value=API.base;
-$('quickSearch').addEventListener('keydown',e=>{if(e.key!=='Enter')return;let q=e.target.value.trim().toLowerCase();if(q.includes('prompt'))showPage('optimizer');else if(q.includes('model')||q.includes('route'))showPage('models');else if(q.includes('sav')||q.includes('run')||q.includes('cost'))showPage('savings');else if(q.includes('ide')||q.includes('key')||q.includes('integrat'))showPage('integrations');else toast('Try searching for prompts, models, savings, or integrations')});let savedRules=JSON.parse(localStorage.getItem('tokenopt-demo-rules')||'null');if(savedRules){$('taskType').value=savedRules.taskType||'Code generation';$('routePolicy').value=savedRules.policy||'balanced';$('costCap').value=savedRules.costCap??2;$('fallbackModel').value=savedRules.fallbackModel||'DeepSeek V3'}render();showPage((location.hash||'#overview').slice(1));if(API.base)refresh();
+$('quickSearch').addEventListener('keydown',e=>{if(e.key!=='Enter')return;let q=e.target.value.trim().toLowerCase();if(q.includes('prompt'))showPage('optimizer');else if(q.includes('model')||q.includes('route'))showPage('models');else if(q.includes('sav')||q.includes('run')||q.includes('cost'))showPage('savings');else if(q.includes('ide')||q.includes('key')||q.includes('integrat'))showPage('integrations');else toast('Try searching for prompts, models, savings, or integrations')});let savedRules=JSON.parse(localStorage.getItem('tokenopt-demo-rules')||'null');if(savedRules){$('taskType').value=savedRules.taskType||'Code generation';$('routePolicy').value=savedRules.policy||'balanced';$('costCap').value=savedRules.costCap??2;$('fallbackModel').value=savedRules.fallbackModel||'DeepSeek V3'}render();async function saveApiKeys() {
+  const btn = $('saveKeysBtn');
+  const deepseek = $('deepseekKeyInput').value.trim();
+  const gemini = $('geminiKeyInput').value.trim();
+
+  if (!deepseek && !gemini) {
+    toast('Please enter a DeepSeek or Google Gemini API key to save.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Saving & Verifying...';
+  toast('Activating API keys in TokenRelay vault...');
+
+  try {
+    const payload = {};
+    if (deepseek) payload.DEEPSEEK_API_KEY = deepseek;
+    if (gemini) payload.GEMINI_API_KEY = gemini;
+
+    const res = await fetch((API.base || 'http://127.0.0.1:8085') + '/api/keys', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+
+    toast('✓ API Keys Saved & Activated! Live Smart Routing Enabled.');
+    btn.textContent = '✓ Saved & Activated';
+    btn.style.background = '#10b981';
+
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = 'Save & Activate Smart Agent';
+      btn.style.background = '';
+    }, 3000);
+
+    if (typeof refresh === 'function') refresh();
+  } catch (err) {
+    toast('Error saving keys: ' + err.message);
+    btn.disabled = false;
+    btn.textContent = 'Save & Activate Smart Agent';
+  }
+}
+
+async function saveSquareLink() {
+  const url = $('squareUrlInput').value.trim();
+  if (!url) { toast('Please enter a valid Square link'); return; }
+  try {
+    const res = await fetch((API.base || 'http://127.0.0.1:8085') + '/api/keys', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ SQUARE_DONATION_URL: url })
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    if ($('testSquareBtn')) $('testSquareBtn').href = url;
+    toast('✓ Square donation link saved successfully');
+  } catch (e) {
+    toast('Error saving Square link: ' + e.message);
+  }
+}
+
+async function loadApiKeys() {
+  try {
+    const res = await fetch((API.base || 'http://127.0.0.1:8085') + '/api/keys');
+    if (res.ok) {
+      const data = await res.json();
+      if (data.DEEPSEEK_API_KEY && $('deepseekKeyInput')) {
+        $('deepseekKeyInput').value = data.DEEPSEEK_API_KEY;
+      }
+      if (data.GEMINI_API_KEY && $('geminiKeyInput')) {
+        $('geminiKeyInput').value = data.GEMINI_API_KEY;
+      }
+      if (data.SQUARE_DONATION_URL && $('squareUrlInput')) {
+        $('squareUrlInput').value = data.SQUARE_DONATION_URL;
+        if ($('testSquareBtn')) $('testSquareBtn').href = data.SQUARE_DONATION_URL;
+      }
+    }
+  } catch (e) {}
+}
+
+showPage((location.hash||'#overview').slice(1));if(API.base)refresh();loadApiKeys();
 </script>
 </body></html>
