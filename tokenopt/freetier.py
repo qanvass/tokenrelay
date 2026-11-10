@@ -117,7 +117,8 @@ def get_claude_code_free_env() -> Dict[str, str]:
     Returns environment variable exports to run Claude Code 100% free
     via TokenRelay's local gateway.
     """
+    port = int(os.environ.get("TOKENRELAY_PORT", 8088))
     return {
-        "ANTHROPIC_BASE_URL": "http://127.0.0.1:8080",
+        "ANTHROPIC_BASE_URL": f"http://127.0.0.1:{port}",
         "ANTHROPIC_API_KEY": "tokenopt-free-tier-proxy",
     }

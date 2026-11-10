@@ -243,10 +243,10 @@ def cmd_freetier(args):
     print("   python agent.py proxy")
     print("2. In your terminal session, set:")
     if sys.platform == "win32":
-        print("   $env:ANTHROPIC_BASE_URL=\"http://127.0.0.1:8080\"")
+        print("   $env:ANTHROPIC_BASE_URL=\"http://127.0.0.1:8088\"")
         print("   $env:ANTHROPIC_API_KEY=\"tokenopt-free\"")
     else:
-        print("   export ANTHROPIC_BASE_URL=\"http://127.0.0.1:8080\"")
+        print("   export ANTHROPIC_BASE_URL=\"http://127.0.0.1:8088\"")
         print("   export ANTHROPIC_API_KEY=\"tokenopt-free\"")
     print("3. Launch Claude Code:")
     print("   claude")
@@ -379,8 +379,8 @@ def main():
     p_comp.add_argument("--requests", type=int, default=10)
 
     # proxy
-    p_proxy = subparsers.add_parser("proxy", help="Run local interceptor proxy daemon (localhost:8080)")
-    p_proxy.add_argument("--port", type=int, default=8080)
+    p_proxy = subparsers.add_parser("proxy", help="Run local interceptor proxy daemon (localhost:8088)")
+    p_proxy.add_argument("--port", type=int, default=8088)
 
     # mcp
     subparsers.add_parser("mcp", help="Run MCP stdio server for IDE integration")

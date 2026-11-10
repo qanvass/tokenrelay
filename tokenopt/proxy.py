@@ -1,6 +1,6 @@
 """
 Zero-Latency Local Interceptor Proxy with Free-Tier Stacking Gateway.
-Runs a local OpenAI & Anthropic-compatible HTTP daemon on localhost:8080.
+Runs a local OpenAI & Anthropic-compatible HTTP daemon on localhost:8088.
 - Intercepts prompts from Cursor, Windsurf, Claude Code, or Cline.
 - Translates Anthropic /v1/messages to OpenAI format for seamless cross-model routing.
 - Automatically fails over across Google Gemini (Free Tier), Groq, and local Ollama.
@@ -10,6 +10,7 @@ Runs a local OpenAI & Anthropic-compatible HTTP daemon on localhost:8080.
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 import os
+import socket
 import sys
 import time
 import urllib.request
@@ -21,7 +22,7 @@ from tokenopt.receipts import format_receipt
 from tokenopt.freetier import free_pool, FREE_TIER_PROVIDERS
 from tokenopt.router import global_router, global_compressor
 
-DEFAULT_PORT = 8080
+DEFAULT_PORT = int(os.environ.get("TOKENRELAY_PORT", 8088))
 
 
 def convert_anthropic_to_openai(req_json: Dict[str, Any]) -> Dict[str, Any]:
@@ -238,14 +239,40 @@ class TokenRelayProxyHandler(BaseHTTPRequestHandler):
         self.wfile.write(err_msg)
 
 
+def find_available_port(start_port: int, max_attempts: int = 50) -> int:
+    """Find the next available port starting from start_port."""
+    for p in range(start_port, start_port + max_attempts):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                s.bind(("127.0.0.1", p))
+                return p
+            except OSError:
+                continue
+    return start_port
+
+
 def start_proxy(port: int = DEFAULT_PORT):
     """Start local interceptor & free-tier gateway server."""
-    server_address = ("127.0.0.1", port)
+    active_port = port
+    is_busy = False
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        try:
+            s.bind(("127.0.0.1", port))
+        except OSError:
+            is_busy = True
+
+    if is_busy:
+        fallback = find_available_port(8088 if port == 8080 else port + 1)
+        print(f"\n[TokenRelay] Notice: Requested port {port} is already in use by another application.")
+        print(f"[TokenRelay] Automatically shifting to free port: http://127.0.0.1:{fallback}")
+        active_port = fallback
+
+    server_address = ("127.0.0.1", active_port)
     httpd = HTTPServer(server_address, TokenRelayProxyHandler)
-    print(f"\n[TokenRelay] Free-Tier Gateway & Interceptor running at http://127.0.0.1:{port}")
+    print(f"\n[TokenRelay] Free-Tier Gateway & Interceptor running at http://127.0.0.1:{active_port}")
     print(f"[TokenRelay] Supports both OpenAI (/v1/chat/completions) and Anthropic (/v1/messages)")
     print(f"[TokenRelay] To run Claude Code 100% FREE:")
-    print(f"           export ANTHROPIC_BASE_URL=http://127.0.0.1:{port}")
+    print(f"           export ANTHROPIC_BASE_URL=http://127.0.0.1:{active_port}")
     print(f"           export ANTHROPIC_API_KEY=tokenopt-free")
     print(f"[TokenRelay] Press Ctrl+C to stop.\n")
     try:

@@ -88,7 +88,7 @@ When you hit a usage limit or credit depletion on Claude Desktop (`claude-fable-
 * Enforces strict **Search/Replace diff directives**, slashing output token generation from 1,500 tokens down to 150 tokens per edit.
 
 ### 3. Desktop IDE Hooking & Telemetry
-* Intercepts incoming requests on `http://localhost:8080` (OpenAI & Anthropic wire protocols).
+* Intercepts incoming requests on `http://localhost:8088` (OpenAI & Anthropic wire protocols).
 * Monitors active session logs across `~/.claude/projects/` and `~/.cursor/`.
 * Telemetry feeds dynamically into the **Control Center Dashboard** (`http://localhost:8085`).
 

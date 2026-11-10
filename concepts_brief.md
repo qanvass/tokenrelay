@@ -37,7 +37,7 @@ Software developers and engineering teams face escalating, opaque cloud bills fr
        │       ├── tool: generate_savings_receipt (itemized ROI breakdown)
        │       └── tool: batchify_payload (50% Batch API converter)
        │
-       ├──► Mode B: Local Proxy Interceptor (`localhost:8080/v1`)
+       ├──► Mode B: Local Proxy Interceptor (`localhost:8088/v1`)
        │       ├── Transparent pass-through for any OpenAI/Anthropic-compatible IDE
        │       ├── Dynamic fallback routing on budget thresholds or peak hours
        │       ├── Pre-send prompt optimizer & prefix stabilizer
